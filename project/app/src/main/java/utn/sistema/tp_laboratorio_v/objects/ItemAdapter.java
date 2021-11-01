@@ -25,7 +25,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
-        return null;
+        return new ItemViewHolder(view);
     }
 
     @Override
@@ -33,8 +33,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
     {
         Item item = this.items.get(position);
 
-        holder.txtDescripcion.setText(item.getDescripcion());
-        holder.txtValor.setText(item.getValor().toString());
+        holder.txtDescription.setText(item.getDescription());
+        holder.txtPrize.setText(item.getPrize().toString());
 
     }
 

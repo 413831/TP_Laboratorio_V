@@ -1,0 +1,37 @@
+[    
+    {
+        "id": 1,
+        "descripcion": "Verduras",
+        "valor": "500"
+    },
+    {
+        "id": 2,
+        "descripcion": "Librería",
+        "valor": "350"
+    },
+    {
+        "id": 3,
+        "descripcion": "AySA",
+        "valor": "780"
+    },
+    {
+        "id": 4,
+        "descripcion": "Expensas",
+        "valor": "4000"
+    },
+    {
+        "id": 5,
+        "descripcion": "Supermercado",
+        "valor": "1200"
+    },
+    {
+        "id": 6,
+        "descripcion": "Internet",
+        "valor": "2300"
+    },
+    {
+        "id": 7,
+        "descripcion": "Kiosko",
+        "valor": "400"
+    }
+]

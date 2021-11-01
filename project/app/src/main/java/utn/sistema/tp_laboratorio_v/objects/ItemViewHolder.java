@@ -10,13 +10,13 @@ import utn.sistema.tp_laboratorio_v.R;
 
 public class ItemViewHolder extends RecyclerView.ViewHolder
 {
-    TextView txtDescripcion;
-    TextView txtValor;
+    TextView txtDescription;
+    TextView txtPrize;
 
     public ItemViewHolder(@NonNull View itemView)
     {
         super(itemView);
-        this.txtDescripcion = itemView.findViewById(R.id.txtDescripcion);
-        this.txtValor = itemView.findViewById(R.id.txtValor);
+        this.txtDescription = itemView.findViewById(R.id.txtDescription);
+        this.txtPrize = itemView.findViewById(R.id.txtPrize);
     }
 }
