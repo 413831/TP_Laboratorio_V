@@ -1,5 +1,7 @@
 package utn.sistema.contador_gastos.services;
 
+import android.util.Log;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +39,7 @@ public class HttpConnection
             urlConnection.connect();
             int response = urlConnection.getResponseCode();
 
+            Log.d("Response CODE", String.valueOf(response));
             if(response == 200)
             {
                 InputStream inputStream = urlConnection.getInputStream();

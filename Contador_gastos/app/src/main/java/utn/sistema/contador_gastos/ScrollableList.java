@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.MenuItem;
 
 import org.json.JSONArray;
@@ -52,19 +53,19 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
     {
         try
         {
-            JSONArray lista = new JSONArray(msg.obj.toString());
+            JSONArray list = new JSONArray(msg.obj.toString());
+            Log.d("JSON", list.toString());
 
-            for (int i = 0; i < lista.length(); i++)
+            for (int i = 0; i < list.length(); i++)
             {
-                JSONObject personaJSON = lista.getJSONObject(i);
-                Integer id = personaJSON.getInt("id");
-                String description = personaJSON.getString("description");
-                Double prize = personaJSON.getDouble("prize");
-                String category = personaJSON.getString("category");
+                JSONObject itemJSON = list.getJSONObject(i);
+
+                Integer id = itemJSON.getInt("id");
+                String description = itemJSON.getString("description");
+                Double prize = itemJSON.getDouble("prize");
+                String category = itemJSON.getString("category");
                 Item item = new Item(id, description, prize , category);
-                /** TODO
-                 * Recuperar imagen de forma asíncrona
-                 */
+
                 this.items.add(item);
             }
             this.adapter.notifyDataSetChanged();
@@ -72,7 +73,7 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
         catch (JSONException e) {
             e.printStackTrace();
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -83,6 +84,13 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.adapter.notifyDataSetChanged();
+
     }
 
 }

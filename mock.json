@@ -1,37 +1,32 @@
 [    
     {
         "id": 1,
-        "descripcion": "Verduras",
-        "valor": "500"
+        "description": "Verduras",
+        "prize": 5000,
+        "category": "Food"
     },
     {
         "id": 2,
-        "descripcion": "Librería",
-        "valor": "350"
+        "description": "Librería",
+        "prize": 350,
+        "category": "Shop"
     },
     {
         "id": 3,
-        "descripcion": "AySA",
-        "valor": "780"
+        "description": "AySA",
+        "prize": 780,
+        "category": "Paybill"
     },
     {
         "id": 4,
-        "descripcion": "Expensas",
-        "valor": "4000"
+        "description": "Expensas",
+        "prize": 4000,
+        "category": "Paybill"
     },
     {
         "id": 5,
-        "descripcion": "Supermercado",
-        "valor": "1200"
-    },
-    {
-        "id": 6,
-        "descripcion": "Internet",
-        "valor": "2300"
-    },
-    {
-        "id": 7,
-        "descripcion": "Kiosko",
-        "valor": "400"
+        "description": "Supermercado",
+        "prize": 1200,
+        "category": "Food"
     }
 ]
