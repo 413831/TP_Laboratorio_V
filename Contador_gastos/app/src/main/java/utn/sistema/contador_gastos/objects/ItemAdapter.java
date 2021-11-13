@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import utn.sistema.contador_gastos.R;
+import utn.sistema.contador_gastos.listeners.ClickPopup;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
 {
@@ -35,6 +36,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
 
         holder.txtDescription.setText(item.getDescription());
         holder.txtPrize.setText(item.getPrize().toString());
+
 
     }
 

@@ -20,6 +20,7 @@
         android:text="List"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
         android:background="@color/cardview_shadow_start_color"/>
 
     <Button
@@ -32,6 +33,7 @@
         android:layout_margin="10dp"
         android:text="Search"
         android:textAllCaps="true"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:background="@color/cardview_shadow_start_color"/>
 

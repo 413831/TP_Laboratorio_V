@@ -14,7 +14,8 @@
         >
         <activity
             android:name=".Search"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.BackgroundImageStyle"/>
         <activity
             android:name=".Create"
             android:exported="true" />
@@ -23,7 +24,8 @@
             android:exported="true" />
         <activity
             android:name=".ScrollableList"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.BackgroundImageStyle"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

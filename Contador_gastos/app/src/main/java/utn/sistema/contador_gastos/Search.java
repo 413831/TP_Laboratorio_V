@@ -16,6 +16,7 @@ public class Search extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Search");
     }
 
     @Override

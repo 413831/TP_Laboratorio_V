@@ -6,11 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,6 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import utn.sistema.contador_gastos.listeners.ClickPopup;
 import utn.sistema.contador_gastos.objects.Item;
 import utn.sistema.contador_gastos.objects.ItemAdapter;
 import utn.sistema.contador_gastos.services.ItemService;
@@ -27,12 +34,14 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
 {
     List<Item> items;
     ItemAdapter adapter;
+    PopupCreate popupCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("List");
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         this.items = new ArrayList<>();
@@ -46,6 +55,11 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        View.OnClickListener onClickListener = new ClickPopup(getSupportFragmentManager(),"add");
+
+        FloatingActionButton button = findViewById(R.id.btnAdd);
+        button.setOnClickListener(onClickListener);
     }
 
     @Override
@@ -74,6 +88,15 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
             e.printStackTrace();
         }
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu,menu);
+
+        MenuItem menuItem = menu.findItem(R.id.itFecha);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
