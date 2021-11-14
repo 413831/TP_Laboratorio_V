@@ -12,13 +12,23 @@ public class Item
     private String description;
     private Double prize;
     private String category;
+    private String date;
 
-    public Item(Integer id, String description, Double prize, String category)
+    public Item(String description, Double prize, String category, String date)
+    {
+        this.description = description;
+        this.prize = prize;
+        this.category = category;
+        this.date = date;
+    }
+
+    public Item(Integer id, String description, Double prize, String category, String date)
     {
         this.id = id;
         this.description = description;
         this.prize = prize;
         this.category = category;
+        this.date = date;
     }
 
     public Integer getId() {
@@ -45,12 +55,20 @@ public class Item
         this.prize = prize;
     }
 
-    public String getString() {
+    public String getCategory() {
         return category;
     }
 
-    public void setString(String category) {
+    public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @Override
@@ -59,7 +77,8 @@ public class Item
         sb.append("id=").append(id);
         sb.append(", description='").append(description).append('\'');
         sb.append(", prize=").append(prize);
-        sb.append(", category=").append(category);
+        sb.append(", category='").append(category).append('\'');
+        sb.append(", date='").append(date).append('\'');
         sb.append('}');
         return sb.toString();
     }
@@ -69,11 +88,13 @@ public class Item
         if (this == o) return true;
         if (!(o instanceof Item)) return false;
         Item item = (Item) o;
-        return Objects.equals(getId(), item.getId()) && Objects.equals(getDescription(), item.getDescription()) && Objects.equals(getPrize(), item.getPrize()) && Objects.equals(category, item.category);
+        return Objects.equals(getId(), item.getId()) && Objects.equals(getDescription(), item.getDescription()) && Objects.equals(getPrize(), item.getPrize()) && Objects.equals(category, item.category) && Objects.equals(getDate(), item.getDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDescription(), getPrize(), category);
+        return Objects.hash(getId(), getDescription(), getPrize(), category, getDate());
     }
+
+
 }

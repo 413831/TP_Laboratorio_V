@@ -1,13 +1,20 @@
 package utn.sistema.contador_gastos.services;
 
+import android.net.Uri;
 import android.util.Log;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
+
+import utn.sistema.contador_gastos.objects.Item;
 
 public class HttpConnection
 {
@@ -27,7 +34,7 @@ public class HttpConnection
         return HttpConnection.conexion;
     }
 
-    public String obtenerElementos(String urlString)
+    public String getElements(String urlString)
     {
         String elementos = "";
 
@@ -68,5 +75,65 @@ public class HttpConnection
             e.printStackTrace();
         }
         return elementos;
+    }
+
+    public String postElement(Uri.Builder postParams, String urlString)
+    {
+        try
+        {
+            URL url = new URL(urlString);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+
+            String query = postParams.build().getEncodedQuery();
+
+            OutputStream os = urlConnection.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+
+            writer.write(query);
+            writer.flush();
+            writer.close();
+            os.close();
+
+            int response = urlConnection.getResponseCode();
+            if(response==200)
+            {
+                InputStream is = urlConnection.getInputStream();
+                return readStream(is);
+            }
+
+        }
+        catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ProtocolException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String readStream(InputStream is)
+    {
+        try
+        {
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            int i = is.read();
+            while(i != -1)
+            {
+                bo.write(i);
+                i = is.read();
+            }
+            return bo.toString();
+        }
+        catch (IOException e)
+        {
+            return "";
+        }
     }
 }

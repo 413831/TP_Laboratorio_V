@@ -39,7 +39,7 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        super.setContentView(R.layout.activity_list);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("List");
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -78,7 +78,8 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
                 String description = itemJSON.getString("description");
                 Double prize = itemJSON.getDouble("prize");
                 String category = itemJSON.getString("category");
-                Item item = new Item(id, description, prize , category);
+                String date = itemJSON.getString("date");
+                Item item = new Item(id, description, prize , category, date);
 
                 this.items.add(item);
             }

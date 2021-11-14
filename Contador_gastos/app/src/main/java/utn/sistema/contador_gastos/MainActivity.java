@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.addListenerOnButton(ScrollableList.class, findViewById(R.id.btnList));
-        this.addListenerOnButton(Search.class, findViewById(R.id.btnSearch));
+        this.addListenerOnButton(ScrollableList.class, super.findViewById(R.id.btnList));
+        this.addListenerOnButton(Search.class, super.findViewById(R.id.btnSearch));
     }
 
     public void addListenerOnButton(Class destination, Button button)

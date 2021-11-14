@@ -9,13 +9,10 @@
     android:padding="10dp"
     android:background="@android:drawable/alert_light_frame">
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
-
 
     <LinearLayout
 
