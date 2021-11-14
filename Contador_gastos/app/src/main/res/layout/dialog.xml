@@ -23,7 +23,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:id="@+id/editPrize"></EditText>
 
     <TextView
@@ -34,7 +34,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
         android:id="@+id/editCategory"></EditText>
 
 </LinearLayout>

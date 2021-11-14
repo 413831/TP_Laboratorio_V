@@ -38,7 +38,6 @@ public class ItemService extends Thread
     {
         HttpConnection httpConnection = HttpConnection.getInstance();
         Uri.Builder params = new Uri.Builder();
-        params.appendQueryParameter("id",item.getId().toString());
         params.appendQueryParameter("description",item.getDescription());
         params.appendQueryParameter("prize", item.getPrize().toString());
         params.appendQueryParameter("category", item.getCategory());

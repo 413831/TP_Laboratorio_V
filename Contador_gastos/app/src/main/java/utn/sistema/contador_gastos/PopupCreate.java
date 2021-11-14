@@ -28,13 +28,13 @@ public class PopupCreate extends AppCompatDialogFragment
         Activity activity = super.getActivity();
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Add item");
-        //TODO Listener
-        DialogInterface.OnClickListener onClickListener = new ClickSave(activity);
-        builder.setPositiveButton("Add",onClickListener);
-        builder.setNegativeButton("Cancel", null);
 
         LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
         View v = layoutInflater.inflate(R.layout.dialog,null);
+        //TODO Listener
+        DialogInterface.OnClickListener onClickListener = new ClickSave(v);
+        builder.setPositiveButton("Add",onClickListener);
+        builder.setNegativeButton("Cancel", null);
 
         builder.setView(v);
 
