@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 import utn.sistema.contador_gastos.objects.Item;
 import utn.sistema.contador_gastos.objects.ItemAdapter;
 import utn.sistema.contador_gastos.services.ItemService;
+import utn.sistema.contador_gastos.services.RequestMethod;
 
 public class Search extends AppCompatActivity implements SearchView.OnQueryTextListener, Handler.Callback
 {
@@ -43,7 +44,7 @@ public class Search extends AppCompatActivity implements SearchView.OnQueryTextL
         Handler handler = new Handler(this);
 
         this.adapter = new ItemAdapter(this.items);
-        ItemService itemService = new ItemService(handler);
+        ItemService itemService = new ItemService(handler, RequestMethod.GET);
         itemService.start();
     }
 

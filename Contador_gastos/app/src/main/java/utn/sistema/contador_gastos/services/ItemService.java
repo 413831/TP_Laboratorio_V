@@ -12,16 +12,19 @@ public class ItemService extends Thread
     Handler handler;
     private static final String GET = "http://192.168.1.36:3000/items";
     private static final String POST = "http://192.168.1.36:3000/nuevoItem";
+    private Item item;
+    private RequestMethod requestMethod;
 
-    public ItemService(Handler handler)
+    public ItemService(Handler handler, RequestMethod requestMethod)
     {
         this.handler = handler;
+        this.requestMethod = requestMethod;
     }
 
     @Override
     public void run()
     {
-        this.getItems();
+        this.executeQuery(this.requestMethod);
     }
 
     private void getItems()
@@ -34,14 +37,47 @@ public class ItemService extends Thread
         this.handler.sendMessage(message);
     }
 
-    public void postItem(Item item)
+    public void postItem()
     {
         HttpConnection httpConnection = HttpConnection.getInstance();
         Uri.Builder params = new Uri.Builder();
-        params.appendQueryParameter("description",item.getDescription());
-        params.appendQueryParameter("prize", item.getPrize().toString());
-        params.appendQueryParameter("category", item.getCategory());
-        params.appendQueryParameter("date", item.getDate());
-        httpConnection.postElement(params,ItemService.POST);
+        params.appendQueryParameter("description",this.item.getDescription());
+        params.appendQueryParameter("prize", this.item.getPrize().toString());
+        params.appendQueryParameter("category", this.item.getCategory());
+        params.appendQueryParameter("date", this.item.getDate());
+        Log.d("POST RESPONSE", httpConnection.postElement(params,ItemService.POST));
+    }
+
+    public void executeQuery(RequestMethod requestMethod)
+    {
+        switch (requestMethod)
+        {
+            case GET:
+                this.getItems();
+                break;
+            case POST:
+                this.postItem();
+                break;
+            case PUT:
+                break;
+            case DELETE:
+                break;
+        }
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public RequestMethod getRequestMethod() {
+        return requestMethod;
+    }
+
+    public void setRequestMethod(RequestMethod requestMethod) {
+        this.requestMethod = requestMethod;
     }
 }

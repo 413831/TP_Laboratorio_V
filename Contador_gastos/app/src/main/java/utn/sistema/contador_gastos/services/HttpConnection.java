@@ -85,67 +85,62 @@ public class HttpConnection
 
     public String postElement(Uri.Builder postParams, String urlString)
     {
-            ExecutorService executor = Executors.newSingleThreadExecutor();
-            Handler handler = new Handler(Looper.getMainLooper());
-            executor.execute(new Runnable() {
-                @Override
-                public void run()
-                {
-                    handler.post(() -> {
-                        try
-                        {
-                            URL url = new URL(urlString);
-                            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                            urlConnection.setRequestMethod("POST");
+        try
+        {
+            URL url = new URL(urlString);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setReadTimeout(10000);
+            urlConnection.setConnectTimeout(15000);
+            urlConnection.setDoInput(true);
+            urlConnection.setDoOutput(true);
 
-                            String query = postParams.build().getEncodedQuery();
+            String query = postParams.build().getEncodedQuery();
 
-                            OutputStream os = urlConnection.getOutputStream();
-                            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+            OutputStream os = urlConnection.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
 
-                            writer.write(query);
-                            writer.flush();
-                            writer.close();
-                            os.close();
+            writer.write(query);
+            writer.flush();
+            writer.close();
+            os.close();
 
-                            int response = urlConnection.getResponseCode();
-                            if(response==200)
-                            {
-                                InputStream is = urlConnection.getInputStream();
-                            }
-                        } catch (MalformedURLException e) {
-                            e.printStackTrace();
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        } catch (ProtocolException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                }
-                private String readStream(InputStream is)
-                {
-                    try
-                    {
-                        ByteArrayOutputStream bo = new ByteArrayOutputStream();
-                        int i = is.read();
-                        while(i != -1)
-                        {
-                            bo.write(i);
-                            i = is.read();
-                        }
-                        return bo.toString();
-                    }
-                    catch (IOException e)
-                    {
-                        return "";
-                    }
-                }
-            });
+            int response = urlConnection.getResponseCode();
+            if(response==200)
+            {
+                InputStream is = urlConnection.getInputStream();
+                return readStream(is);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return null;
     }
 
+    private String readStream(InputStream is)
+    {
+        try
+        {
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            int i = is.read();
+            while(i != -1)
+            {
+                bo.write(i);
+                i = is.read();
+            }
+            return bo.toString();
+        }
+        catch (IOException e)
+        {
+            return "";
+        }
+    }
 
 }

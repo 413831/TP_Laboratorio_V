@@ -14,6 +14,7 @@ import java.util.Date;
 import utn.sistema.contador_gastos.R;
 import utn.sistema.contador_gastos.objects.Item;
 import utn.sistema.contador_gastos.services.ItemService;
+import utn.sistema.contador_gastos.services.RequestMethod;
 
 public class ClickSave implements AlertDialog.OnClickListener
 {
@@ -41,8 +42,9 @@ public class ClickSave implements AlertDialog.OnClickListener
                 Double.valueOf(editPrize.getText().toString().trim()),
                 editCategory.getText().toString(),
                 date.toString());
-        ItemService itemService = new ItemService(null);
-        itemService.postItem(item);
+        ItemService itemService = new ItemService(null, RequestMethod.POST);
+        itemService.setItem(item);
+        itemService.start();
         dialogInterface.dismiss();
     }
 }
