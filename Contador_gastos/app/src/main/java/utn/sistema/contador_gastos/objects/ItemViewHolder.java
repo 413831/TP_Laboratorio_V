@@ -11,16 +11,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import utn.sistema.contador_gastos.R;
 import utn.sistema.contador_gastos.listeners.ClickPopup;
+import utn.sistema.contador_gastos.listeners.ClickShare;
 
 public class ItemViewHolder extends RecyclerView.ViewHolder
 {
     TextView txtDescription;
     TextView txtPrize;
+    TextView txtDate;
+    TextView txtCategory;
+    LinearLayout layout;
 
     public ItemViewHolder(@NonNull View itemView)
     {
         super(itemView);
         this.txtDescription = itemView.findViewById(R.id.txtDescription);
         this.txtPrize = itemView.findViewById(R.id.txtPrize);
+        this.txtDate = itemView.findViewById(R.id.txtDate);
+        this.txtCategory = itemView.findViewById(R.id.txtCategory);
+        View.OnClickListener onClickListener = new ClickShare(new Item(txtDescription.getText().toString(),Double.valueOf(txtDescription.getText().toString()),
+                                                                        txtCategory.getText().toString(),txtDate.getText().toString()));
+        this.layout.setOnClickListener(onClickListener);
+
     }
 }
