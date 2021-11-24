@@ -28,9 +28,9 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
         this.txtPrize = itemView.findViewById(R.id.txtPrize);
         this.txtDate = itemView.findViewById(R.id.txtDate);
         this.txtCategory = itemView.findViewById(R.id.txtCategory);
-        View.OnClickListener onClickListener = new ClickShare(new Item(txtDescription.getText().toString(),Double.valueOf(txtDescription.getText().toString()),
-                                                                        txtCategory.getText().toString(),txtDate.getText().toString()));
-        this.layout.setOnClickListener(onClickListener);
+
+        this.layout = itemView.findViewById(R.id.layoutItem);
+
 
     }
 }

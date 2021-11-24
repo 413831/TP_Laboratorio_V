@@ -11,6 +11,7 @@ import java.util.List;
 
 import utn.sistema.contador_gastos.R;
 import utn.sistema.contador_gastos.listeners.ClickPopup;
+import utn.sistema.contador_gastos.listeners.ClickShare;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
 {
@@ -36,8 +37,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
 
         holder.txtDescription.setText(item.getDescription());
         holder.txtPrize.setText(item.getPrize().toString());
+        holder.txtDate.setText(item.getDate());
+        holder.txtCategory.setText(item.getCategory());
 
+        View.OnClickListener onClickListener = new ClickShare(new Item(holder.txtDescription.getText().toString(),Double.valueOf(holder.txtPrize.getText().toString()),
+                holder.txtCategory.getText().toString(),holder.txtDate.getText().toString()));
 
+        holder.layout.setOnClickListener(onClickListener);
     }
 
     @Override

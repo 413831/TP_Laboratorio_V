@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -22,7 +23,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import utn.sistema.contador_gastos.listeners.ClickPopup;
@@ -35,6 +38,7 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
 {
     List<Item> items;
     ItemAdapter adapter;
+    Double total;
     PopupCreate popupCreate;
 
     @Override
@@ -42,8 +46,9 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_list);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("List");
+        actionBar.setTitle("Today's expenses");
         actionBar.setDisplayHomeAsUpEnabled(true);
+        this.total = 0d;
 
         this.items = new ArrayList<>();
         Handler handler = new Handler(this);
@@ -61,6 +66,8 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
 
         FloatingActionButton button = findViewById(R.id.btnAdd);
         button.setOnClickListener(onClickListener);
+
+
     }
 
     @Override
@@ -83,8 +90,11 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
                 Item item = new Item(id, description, prize , category, date);
 
                 this.items.add(item);
+                this.total += prize;
             }
             this.adapter.notifyDataSetChanged();
+            TextView txtTotal = findViewById(R.id.txtTotal);
+            txtTotal.setText("TOTAL: $" + this.total.toString());
         }
         catch (JSONException e) {
             e.printStackTrace();
@@ -98,6 +108,10 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
         getMenuInflater().inflate(R.menu.menu,menu);
 
         MenuItem menuItem = menu.findItem(R.id.itFecha);
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dateString = formatter.format(date);
+        menuItem.setTitle(dateString);
         return super.onCreateOptionsMenu(menu);
     }
 

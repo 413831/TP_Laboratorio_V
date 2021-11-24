@@ -73,13 +73,12 @@ public class Item
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Item{");
-        sb.append("id=").append(id);
-        sb.append(", description='").append(description).append('\'');
-        sb.append(", prize=").append(prize);
-        sb.append(", category='").append(category).append('\'');
-        sb.append(", date='").append(date).append('\'');
-        sb.append('}');
+        final StringBuilder sb = new StringBuilder("Item");
+        sb.append("\nid=").append(id);
+        sb.append("\ndescription = '").append(description).append('\'');
+        sb.append("\nprize = $").append(prize);
+        sb.append("\ncategory = '").append(category).append('\'');
+        sb.append("\ndate = '").append(date).append('\'');
         return sb.toString();
     }
 
