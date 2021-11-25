@@ -23,7 +23,7 @@
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
         android:gravity="left"
-        android:background="@android:drawable/alert_light_frame"
+        android:background="@color/cardview_light_background"
         android:padding="5dp">
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
-            android:text="TOTAL: $1000"
+            android:text="TOTAL: $0"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#000000"></TextView>
     </LinearLayout>
