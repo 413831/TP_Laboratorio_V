@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,17 +39,23 @@ public class Search extends AppCompatActivity implements SearchView.OnQueryTextL
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        String title = this.getResources().getString(R.string.title_activity_search);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Search");
+        actionBar.setTitle(title);
 
         this.items = new ArrayList<>();
         Handler handler = new Handler(this);
 
-        this.adapter = new ItemAdapter(this.items);
         ItemService itemService = new ItemService(handler, RequestMethod.GET);
         itemService.start();
+        this.adapter = new ItemAdapter(this.items);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
+        RecyclerView recyclerView = super.findViewById(R.id.recyclerview_search);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -56,6 +66,9 @@ public class Search extends AppCompatActivity implements SearchView.OnQueryTextL
         MenuItem menuItem = menu.findItem(R.id.itBuscador);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setOnQueryTextListener(this);
+        searchView.setInputType(InputType.TYPE_CLASS_DATETIME);
+        searchView.setQueryHint("Enter a date");
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -72,21 +85,16 @@ public class Search extends AppCompatActivity implements SearchView.OnQueryTextL
     @Override
     public boolean onQueryTextSubmit(String query)
     {
-
+        Log.d("QUERY", query);
+        //this.adapter.getFilter().filter(query);
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText)
     {
-        List<Item> newList = new ArrayList<>();
-        for (Item item : this.items)
-        {
-            if (item.getDate().startsWith(newText))
-            {
-                newList.add(item);
-            }
-        }
+        Log.d("NEW TEXT", newText);
+        this.adapter.getFilter().filter(newText);
         return false;
     }
 

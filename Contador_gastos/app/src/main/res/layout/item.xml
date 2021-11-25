@@ -8,8 +8,6 @@
     android:padding="10dp"
     android:background="@android:drawable/screen_background_light_transparent">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,6 +56,13 @@
             android:gravity="end"
             android:padding="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"></TextView>
+
+        <ImageView
+            android:id="@+id/imgShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_share"
+            android:tooltipText="@string/btn_share"></ImageView>
 
     </LinearLayout>
 

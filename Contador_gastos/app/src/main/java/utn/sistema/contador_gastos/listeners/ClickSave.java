@@ -1,7 +1,9 @@
 package utn.sistema.contador_gastos.listeners;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,11 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONStringer;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import utn.sistema.contador_gastos.R;
@@ -34,6 +41,10 @@ public class ClickSave implements AlertDialog.OnClickListener
 
         Date date = new Date();
 
+        String pattern = "dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String dateString = simpleDateFormat.format(date);
+
         Log.d("click", "DESCRIPTION: " + editDescription.getText().toString());
         Log.d("click", "PRIZE: " + editPrize.getText().toString().trim());
         Log.d("click", "CATEGORY: " + editCategory.getText().toString());
@@ -41,10 +52,18 @@ public class ClickSave implements AlertDialog.OnClickListener
         Item item = new Item(editDescription.getText().toString(),
                 Double.valueOf(editPrize.getText().toString().trim()),
                 editCategory.getText().toString(),
-                date.toString());
+                dateString);
+
         ItemService itemService = new ItemService(null, RequestMethod.POST);
         itemService.setItem(item);
         itemService.start();
+
+        SharedPreferences preferences = view.getContext().getSharedPreferences("elements", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("new_item", item.toString());
+        editor.commit();
+
+        Log.d("Click","On Dismiss");
         dialogInterface.dismiss();
     }
 }

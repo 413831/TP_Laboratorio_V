@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.toolbar);
-        ((TextView) actionBar.getCustomView().findViewById(R.id.tvTitle)).setText("Welcome");
+
+        String title = this.getResources().getString(R.string.app_name);
+        ((TextView) actionBar.getCustomView().findViewById(R.id.tvTitle)).setText(title);
 
         this.addListenerOnButton(ScrollableList.class, super.findViewById(R.id.btnList));
         this.addListenerOnButton(Search.class, super.findViewById(R.id.btnSearch));

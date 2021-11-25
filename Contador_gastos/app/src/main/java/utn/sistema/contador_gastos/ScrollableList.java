@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,7 +36,7 @@ import utn.sistema.contador_gastos.objects.ItemAdapter;
 import utn.sistema.contador_gastos.services.ItemService;
 import utn.sistema.contador_gastos.services.RequestMethod;
 
-public class ScrollableList extends AppCompatActivity implements Handler.Callback
+public class ScrollableList extends AppCompatActivity implements Handler.Callback, DialogInterface.OnDismissListener
 {
     List<Item> items;
     ItemAdapter adapter;
@@ -45,8 +47,11 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_list);
+
+        String title = this.getResources().getString(R.string.title_activity_list);
+
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Today's expenses");
+        actionBar.setTitle(title);
         actionBar.setDisplayHomeAsUpEnabled(true);
         this.total = 0d;
 
@@ -66,8 +71,6 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
 
         FloatingActionButton button = findViewById(R.id.btnAdd);
         button.setOnClickListener(onClickListener);
-
-
     }
 
     @Override
@@ -130,6 +133,36 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
         super.onResume();
         this.adapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialogInterface)
+    {
+        SharedPreferences preferences = super.getSharedPreferences("elements", Context.MODE_PRIVATE);
+        String newItem = preferences.getString("new_item", "empty");
+
+        Log.d("NEW ITEM", newItem);
+        try
+        {
+            JSONObject itemJSON = new JSONObject(newItem);
+            String description = itemJSON.getString("description");
+            Double prize = itemJSON.getDouble("prize");
+            String category = itemJSON.getString("category");
+            String date = itemJSON.getString("date");
+            Integer lastId = this.items.get(this.items.size()-1).getId();
+
+            Item item = new Item(lastId++, description, prize , category, date);
+
+            this.items.add(item);
+            this.adapter.notifyDataSetChanged();
+            this.total += prize;
+            TextView txtTotal = findViewById(R.id.txtTotal);
+            txtTotal.setText("TOTAL: $" + this.total.toString());
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 }

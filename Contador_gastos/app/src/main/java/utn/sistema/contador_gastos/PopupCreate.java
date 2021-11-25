@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -39,6 +40,19 @@ public class PopupCreate extends AppCompatDialogFragment
         builder.setView(v);
 
         return builder.create();
+    }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog)
+    {
+        super.onDismiss(dialog);
+        final Activity activity = getActivity();
+
+        if (activity instanceof DialogInterface.OnDismissListener)
+        {
+            Log.d("On Dismiss","On Dismiss");
+            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
+        }
     }
 
 

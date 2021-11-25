@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"></TextView>
+        android:text="@string/txt_description"></TextView>
 
     <EditText
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prize"></TextView>
+        android:text="@string/txt_prize"></TextView>
 
     <EditText
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Category"></TextView>
+        android:text="@string/txt_category"></TextView>
 
     <EditText
         android:layout_width="match_parent"

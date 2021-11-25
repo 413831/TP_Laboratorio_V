@@ -9,18 +9,23 @@
     tools:context=".MainActivity"
     android:background="@android:drawable/screen_background_light_transparent">
 
+
     <Button
         android:id="@+id/btnList"
         style="@android:style/Widget.Holo.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_margin="10dp"
         android:padding="25dp"
-        android:text="List"
+        android:text="@string/btn_list"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:tooltipText="@string/btn_list"
+        android:drawableRight="@drawable/ic_action_list_2"
+        />
 
     <Button
         android:id="@+id/btnSearch"
@@ -28,12 +33,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_margin="10dp"
         android:padding="25dp"
-        android:text="Search"
+        android:text="@string/btn_search"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:tooltipText="@string/btn_search"
+        android:drawableRight="@drawable/ic_action_search"/>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

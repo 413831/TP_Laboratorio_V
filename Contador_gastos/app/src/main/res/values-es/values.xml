@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sinum</string>
+    <string name="title_activity_list">Gastos de hoy</string>
+    <string name="title_activity_search">Buscar</string>
+    <string name="welcome">"¡Bienvenid@!"</string>
+    <string name="btn_list">Lista</string>
+    <string name="btn_search">Búsqueda</string>
+    <string name="btn_share">Compartir</string>
+    <string name="txt_description">Descripción</string>
+    <string name="txt_prize">Precio</string>
+    <string name="txt_category">Categoría</string>
+    <string name="txt_date">Fecha</string>
+</resources>

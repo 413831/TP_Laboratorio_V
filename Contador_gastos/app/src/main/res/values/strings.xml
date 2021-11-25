@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">PEN</string>
-    <string name="title_activity_create">Create</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="app_name">Sinum</string>
+    <string name="title_activity_list">Today\'s expenses</string>
+    <string name="title_activity_search">Search</string>
     <string name="welcome">"Welcome !"</string>
+    <string name="btn_list">List</string>
+    <string name="btn_search">Search</string>
+    <string name="btn_share">Share</string>
+    <string name="txt_description">Description</string>
+    <string name="txt_prize">Prize</string>
+    <string name="txt_category">Category</string>
+    <string name="txt_date">Date</string>
 </resources>

@@ -3,6 +3,7 @@ package utn.sistema.contador_gastos.objects;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
     TextView txtDate;
     TextView txtCategory;
     LinearLayout layout;
+    ImageView imageView;
 
     public ItemViewHolder(@NonNull View itemView)
     {
@@ -28,9 +30,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
         this.txtPrize = itemView.findViewById(R.id.txtPrize);
         this.txtDate = itemView.findViewById(R.id.txtDate);
         this.txtCategory = itemView.findViewById(R.id.txtCategory);
-
+        this.imageView = itemView.findViewById(R.id.imgShare);
         this.layout = itemView.findViewById(R.id.layoutItem);
-
-
     }
 }
