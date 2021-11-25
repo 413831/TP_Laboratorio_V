@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import utn.sistema.contador_gastos.R;
@@ -20,7 +21,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
     TextView txtPrize;
     TextView txtDate;
     TextView txtCategory;
-    LinearLayout layout;
+    CardView layout;
     ImageView imageView;
 
     public ItemViewHolder(@NonNull View itemView)

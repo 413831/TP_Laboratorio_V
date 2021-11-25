@@ -11,4 +11,5 @@
     <string name="txt_prize">Precio</string>
     <string name="txt_category">Categoría</string>
     <string name="txt_date">Fecha</string>
+    <string name="title_popup_newitem">Nuevo item</string>
 </resources>

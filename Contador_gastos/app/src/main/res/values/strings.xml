@@ -2,6 +2,7 @@
     <string name="app_name">Sinum</string>
     <string name="title_activity_list">Today\'s expenses</string>
     <string name="title_activity_search">Search</string>
+    <string name="title_popup_newitem">New Item</string>
     <string name="welcome">"Welcome !"</string>
     <string name="btn_list">List</string>
     <string name="btn_search">Search</string>

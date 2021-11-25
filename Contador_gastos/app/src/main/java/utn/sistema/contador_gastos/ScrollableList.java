@@ -80,20 +80,28 @@ public class ScrollableList extends AppCompatActivity implements Handler.Callbac
         {
             JSONArray list = new JSONArray(msg.obj.toString());
             Log.d("JSON", list.toString());
+            Date currentDate = new Date();
+
+            String pattern = "dd/MM/yyyy";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String currentDateString = simpleDateFormat.format(currentDate);
 
             for (int i = 0; i < list.length(); i++)
             {
                 JSONObject itemJSON = list.getJSONObject(i);
-
-                Integer id = itemJSON.getInt("id");
-                String description = itemJSON.getString("description");
-                Double prize = itemJSON.getDouble("prize");
-                String category = itemJSON.getString("category");
                 String date = itemJSON.getString("date");
-                Item item = new Item(id, description, prize , category, date);
 
-                this.items.add(item);
-                this.total += prize;
+                if(currentDateString.equals(date))
+                {
+                    Integer id = itemJSON.getInt("id");
+                    String description = itemJSON.getString("description");
+                    Double prize = itemJSON.getDouble("prize");
+                    String category = itemJSON.getString("category");
+                    Item item = new Item(id, description, prize , category, date);
+
+                    this.items.add(item);
+                    this.total += prize;
+                }
             }
             this.adapter.notifyDataSetChanged();
             TextView txtTotal = findViewById(R.id.txtTotal);

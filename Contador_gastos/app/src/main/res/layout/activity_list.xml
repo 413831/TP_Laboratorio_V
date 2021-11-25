@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        android:gravity="bottom"
+        android:gravity="left"
         android:background="@android:drawable/alert_light_frame"
         android:padding="5dp">
 
@@ -41,7 +41,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
         android:gravity="bottom"
         android:orientation="vertical"
         android:padding="5dp">

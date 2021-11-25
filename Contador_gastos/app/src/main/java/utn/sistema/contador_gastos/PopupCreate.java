@@ -28,7 +28,7 @@ public class PopupCreate extends AppCompatDialogFragment
     {
         Activity activity = super.getActivity();
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle("Add item");
+        builder.setTitle(activity.getResources().getString(R.string.title_popup_newitem));
 
         LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
         View v = layoutInflater.inflate(R.layout.dialog,null);
